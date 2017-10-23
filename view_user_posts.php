@@ -1,4 +1,5 @@
 <?php
+	$user = $_POST["username"];
 	$server = "mysql.eecs.ku.edu";
 	$username = "jbliss";
 	$password = "jbliss";
@@ -6,18 +7,14 @@
 	
 	$mysqli = new mysqli($server, $username, $password, $dbname);
 
-	$query = "SELECT user_id FROM Users";
+	$query = "SELECT author_id, content FROM Posts";
 	
 	if ($result = $mysqli->query($query) ) {
-		echo "Users:<br>";
-		echo "<table>";
+		echo "Posts:<br>";
 		while ($row = $result->fetch_assoc()) {
-			echo "<tr>";
-			printf ("%s\n", $row["user_id"]);
-			echo "</tr>";
+			printf ("%s : %s<br>", $row["author_id"], $row["content"]);
 		}
 		$result->free();
-		echo "</table>";
 	} 
 	else {
 		echo "Error: " . $query . "<br>" . $mysqli->error;
