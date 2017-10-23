@@ -12,9 +12,9 @@
 		echo "Users:<br>";
 		echo "<table>";
 		while ($row = $result->fetch_assoc()) {
-			echo "<tr>";
+			echo "<td>";
 			printf ("%s\n", $row["user_id"]);
-			echo "</tr>";
+			echo "</td>";
 		}
 		$result->free();
 		echo "</table>";
