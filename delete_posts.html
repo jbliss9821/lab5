@@ -1,0 +1,41 @@
+<html>
+    <head>
+    </head>
+<body>
+
+    <form action="delete_posts.php" method="post">
+      <p>Post Deleting<br>
+        Select a User to View Posts<br>
+		<table name="posts">
+		<?php
+			$server = "mysql.eecs.ku.edu";
+			$username = "jbliss";
+			$password = "jbliss";
+			$dbname = "jbliss";
+
+      $mysqli = new mysqli($server, $username, $password, $dbname);
+
+    	$query = "SELECT author_id, content FROM Posts";
+
+    	if ($result = $mysqli->query($query) ) {
+    		echo "<table><th></th><th>Author</th><th>Post</th>";
+    		while ($row = $result->fetch_assoc()) {
+    			echo"<tr>"
+          echo '<td><input type="checkbox" value ="" name="'.$row['post_id'].'"/> '
+          echo "<td>".$row['author_id']."</td>";
+    			echo "<td> | ".$row['content']."</td></tr>";
+    		}
+    		$result->free();
+    	}
+    	else {
+    		echo "Error: " . $query . "<br>" . $mysqli->error;
+    	}
+
+    	/* close connection */
+    	$mysqli->close();
+		?>
+		</select>
+		<input type="submit">
+    </form>
+</body>
+</html>
