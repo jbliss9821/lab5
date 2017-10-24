@@ -9,12 +9,10 @@
 	$query = "SELECT user_id FROM Users";
 	
 	if ($result = $mysqli->query($query) ) {
-		echo "Users:<br>";
 		echo "<table>";
+		echo "<th>User</th>";
 		while ($row = $result->fetch_assoc()) {
-			echo "<td>";
-			printf ("%s\n", $row["user_id"]);
-			echo "</td>";
+			echo "<tr><td>".$row['user_id']."</td></tr>";
 		}
 		$result->free();
 		echo "</table>";

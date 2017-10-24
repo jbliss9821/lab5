@@ -10,9 +10,10 @@
 	$query = "SELECT author_id, content FROM Posts";
 	
 	if ($result = $mysqli->query($query) ) {
-		echo "Posts:<br>";
+		echo "<table><th>Author</th><th>Post</th>";
 		while ($row = $result->fetch_assoc()) {
-			printf ("%s : %s<br>", $row["author_id"], $row["content"]);
+			echo"<tr><td>".$row['author_id']."</td>";
+			echo "<td> | ".$row['content']."</td></tr>";
 		}
 		$result->free();
 	} 

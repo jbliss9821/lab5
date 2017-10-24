@@ -1,0 +1,38 @@
+<html>
+    <head>
+    </head>
+<body>
+
+    <form action="view_user_posts.php" method="post">
+      <p>Post Creation<br>
+        Select a User to View Posts<br>
+		<select name="users">
+		<?php
+			$server = "mysql.eecs.ku.edu";
+			$username = "jbliss";
+			$password = "jbliss";
+			$dbname = "jbliss";
+			
+			$mysqli = new mysqli($server, $username, $password, $dbname);
+
+			$query = "SELECT user_id FROM Users";
+			
+			if ($result = $mysqli->query($query) ) {
+				while ($row = $result->fetch_assoc($result)) {
+					$user = $row['user_id'];
+					echo '<option value="'.$user.'">'.$user.'</option>';
+				}
+				$result->free();
+			} 
+			else {
+				echo "Error: " . $query . "<br>" . $mysqli->error;
+			}
+				
+			/* close connection */
+			$mysqli->close();
+		?>
+		</select>
+		<input type="submit">
+    </form>
+</body>
+</html>
