@@ -16,17 +16,17 @@
 
 			$query = "SELECT user_id FROM Users";
 
-			if ($result = $mysqli->query($query) ) {
-				while ($row = $result->fetch_assoc($result)) {
+			if ($result = $mysqli.query($query) ) {
+				while ($row = $result.fetch_assoc($result)) {
 					$user = $row['user_id'];
 					echo '<option value="'.$user.'">'.$user.'</option>';
 				}
-				$result->free();
+				$result.free();
 			}
 			else {
-				echo "Error: " . $query . "<br>" . $mysqli->error;
+				echo "Error: " . $query . "<br>" . $mysqli.error;
 			}
-			$mysqli->close();
+			$mysqli.close();
 		?>
 		</select>
 		<input type="submit">
